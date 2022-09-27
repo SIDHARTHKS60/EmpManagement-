@@ -1,7 +1,7 @@
 package com.employee.demo.service
 
 import com.employee.demo.model.Employee
-import com.employee.demo.repository.EmpRepository
+import com.employee.demo.repository.EmployeeRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Flux
@@ -10,7 +10,7 @@ import reactor.core.publisher.Mono
 @Service
 class EmployeeService(
     @Autowired
-    private val empRepo: EmpRepository) {
+    private val empRepo: EmployeeRepository) {
 
     fun findAllEmployees(): Flux<Employee> {
         return empRepo.findAll()
