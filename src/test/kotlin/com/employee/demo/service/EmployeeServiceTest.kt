@@ -25,13 +25,13 @@ class EmployeeServiceTest {
         }returns Mono.just(emp1)
     }
 
-    private val userService = EmployeeService(employeeRepository)
+    private val employeeService = EmployeeService(employeeRepository)
 
     @Test
     fun `should return users when findAllUsers  method is called`() {
 
-        val firstUser = userService.findAllEmployees().blockFirst()
-        val secondUser = userService.findAllEmployees().blockLast()
+        val firstUser = employeeService.findAllEmployees().blockFirst()
+        val secondUser = employeeService.findAllEmployees().blockLast()
 
         if (firstUser != null) {
             firstUser shouldBe emp1
@@ -49,7 +49,7 @@ class EmployeeServiceTest {
             employeeRepository.save(user1)
         }returns Mono.just(user1)
 
-        val addedUser = userService.addEmployee(user1).block()
+        val addedUser = employeeService.addEmployee(user1).block()
 
         addedUser shouldBe user1
     }
@@ -57,7 +57,7 @@ class EmployeeServiceTest {
     @Test
     fun `test Find User By Id`() {
 
-        val result=userService.findById(999).block()
+        val result=employeeService.findById(999).block()
 
         result shouldBe emp1
 
@@ -74,11 +74,11 @@ class EmployeeServiceTest {
     @Test
     fun `test update User`() {
 
-        // val user1 = User(999,"Rahul K",9999999999,"Aaaaa@aaa")
         every{
             employeeRepository.save(emp1)
         }returns Mono.just(emp1)
-        val updatedUser = userService.updateEmployee(999,emp1).block()
+
+        val updatedUser = employeeService.updateEmployee(999,emp1).block()
 
         updatedUser shouldBe emp1
     }

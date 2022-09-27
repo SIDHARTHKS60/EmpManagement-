@@ -23,7 +23,7 @@ class EmployeeController(@Autowired val empSer: EmployeeService) {
     }
 
     @GetMapping("emp/find/{empId}")
-     fun findEmployee(@PathVariable("empId") empId: Int, @RequestBody emp: Employee): Mono<Employee> {
+     fun findEmployee(@PathVariable("empId") empId: Int): Mono<Employee> {
         return empSer.findById(empId)
     }
 
